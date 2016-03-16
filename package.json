@@ -1,0 +1,42 @@
+{
+    "name": "bignosql",
+    "description": "Smart NoSQL wapper for SQL",
+    "version": "0.9.0",
+    "keywords": [
+        "nosql",
+        "mysql",
+        "pgsql",
+        "postgresql"
+    ],
+    "homepage": "https://github.com/vietor/bignosql",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/vietor/bignosql.git"
+    },
+    "bugs": {
+        "url": "https://github.com/vietor/bignosql/issues"
+    },
+    "author": {
+        "name": "Vietor Liu",
+        "email": "vietor.liu (at) gmail.com",
+        "url": "https://github.com/vietor"
+    },
+    "license": "MIT",
+    "main": "index.js",
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "files": [
+        "LICENSE",
+        "README.md",
+        "index.js",
+        "lib/"
+    ],
+    "dependencies": {
+        "underscore": "^1.8.3"
+    },
+    "devDependencies": {
+        "mocha": "^2.4.5",
+        "should": "^8.2.2"
+    }
+}
