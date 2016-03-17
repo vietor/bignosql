@@ -67,6 +67,29 @@ function forFind(context, TestModel) {
     };
 }
 
+function forFindRegexp(context, TestModel) {
+    return function(done) {
+        TestModel.find({
+            id: context.id,
+            key: {
+                $regex: "^de.*[0-9]*$"
+            }
+        }, {
+            id: 1,
+            key: 1,
+            value: 1
+        }).sort({
+            key: -1
+        }).exec(function(err, rows) {
+            should(err).be.equal(null);
+            should(rows.length == 1).be.ok();
+            should(rows[0].key).be.eql("demo2");
+            should(rows[0].value).be.eql(3);
+            done();
+        });
+    };
+}
+
 function forCount(context, TestModel) {
     return function(done) {
         TestModel.count({
@@ -133,6 +156,7 @@ describe('PostgreSQL', function() {
     it('insert', forInsert(context, TestModel));
     it('update', forUpdate(context, TestModel));
     it('find', forFind(context, TestModel));
+    it('find regexp', forFindRegexp(context, TestModel));
     it('count', forCount(context, TestModel));
     it('remove', forRemove(context, TestModel));
     it('find empty', forFindEmpty(context, TestModel));
@@ -159,6 +183,7 @@ describe('MySQL', function() {
     it('insert', forInsert(context, TestModel));
     it('update', forUpdate(context, TestModel));
     it('find', forFind(context, TestModel));
+    it('find regexp', forFindRegexp(context, TestModel));
     it('count', forCount(context, TestModel));
     it('remove', forRemove(context, TestModel));
     it('find empty', forFindEmpty(context, TestModel));
