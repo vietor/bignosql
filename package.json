@@ -37,6 +37,11 @@
     },
     "devDependencies": {
         "mocha": "^2.4.5",
-        "should": "^8.2.2"
+        "mysql": "^2.10.2",
+        "pg": "^4.5.1",
+        "should": "^8.2.2",
+        "gulp": "~3.9.0",
+        "gulp-jsbeautifier": "~1.0.1",
+        "gulp-mocha": "~2.2.0"
     }
 }
