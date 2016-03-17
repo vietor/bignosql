@@ -50,7 +50,16 @@ function forUpdate(context, TestModel) {
 function forFind(context, TestModel) {
     return function(done) {
         TestModel.find({
-            id: context.id
+            $or: [{
+                id: context.id
+            }, {
+                key: 'dong usage 1',
+                $or: [{
+                    key: 'dong usage 2'
+                }, {
+                    key: 'dong usage 3'
+                }]
+            }]
         }, {
             id: 1,
             key: 1,
@@ -70,7 +79,6 @@ function forFind(context, TestModel) {
 function forFindRegexp(context, TestModel) {
     return function(done) {
         TestModel.find({
-            id: context.id,
             key: {
                 $regex: "^de.*[0-9]*$"
             }
@@ -79,11 +87,10 @@ function forFindRegexp(context, TestModel) {
             key: 1,
             value: 1
         }).sort({
-            key: -1
-        }).exec(function(err, rows) {
+            id: -1
+        }).limit(1).exec(function(err, rows) {
             should(err).be.equal(null);
-            should(rows.length == 1).be.ok();
-            should(rows[0].key).be.eql("demo2");
+            should(rows[0].id).be.eql(context.id);
             should(rows[0].value).be.eql(3);
             done();
         });
