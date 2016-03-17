@@ -76,6 +76,34 @@ function forFind(context, TestModel) {
     };
 }
 
+function forFindIn(context, TestModel) {
+    return function(done) {
+        TestModel.find({
+            id: {
+                $in: [context.id, -1]
+            }
+        }, function(err, rows) {
+            should(err).be.equal(null);
+            should(rows[0].value).be.eql(3);
+            done();
+        });
+    };
+}
+
+function forFindInEq(context, TestModel) {
+    return function(done) {
+        TestModel.find({
+            id: {
+                $in: [context.id]
+            }
+        }, function(err, rows) {
+            should(err).be.equal(null);
+            should(rows[0].value).be.eql(3);
+            done();
+        });
+    };
+}
+
 function forFindRegexp(context, TestModel) {
     return function(done) {
         TestModel.find({
@@ -163,6 +191,8 @@ describe('PostgreSQL', function() {
     it('insert', forInsert(context, TestModel));
     it('update', forUpdate(context, TestModel));
     it('find', forFind(context, TestModel));
+    it('find in', forFindIn(context, TestModel));
+    it('find in eq', forFindInEq(context, TestModel));
     it('find regexp', forFindRegexp(context, TestModel));
     it('count', forCount(context, TestModel));
     it('remove', forRemove(context, TestModel));
@@ -190,6 +220,8 @@ describe('MySQL', function() {
     it('insert', forInsert(context, TestModel));
     it('update', forUpdate(context, TestModel));
     it('find', forFind(context, TestModel));
+    it('find in', forFindIn(context, TestModel));
+    it('find in eq', forFindInEq(context, TestModel));
     it('find regexp', forFindRegexp(context, TestModel));
     it('count', forCount(context, TestModel));
     it('remove', forRemove(context, TestModel));
