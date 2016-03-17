@@ -67,6 +67,18 @@ function forFind(context, TestModel) {
     };
 }
 
+function forCount(context, TestModel) {
+    return function(done) {
+        TestModel.count({
+            id: context.id
+        }, function(err, rowCount) {
+            should(err).be.equal(null);
+            should(rowCount == 1).be.ok();
+            done();
+        });
+    };
+}
+
 function forRemove(context, TestModel) {
     return function(done) {
         TestModel.remove({
@@ -91,7 +103,17 @@ function forFindEmpty(context, TestModel) {
     };
 }
 
-
+function forCountEmpty(context, TestModel) {
+    return function(done) {
+        TestModel.count({
+            id: context.id
+        }, function(err, rowCount) {
+            should(err).be.equal(null);
+            should(rowCount === 0).be.ok();
+            done();
+        });
+    };
+}
 
 describe('PostgreSQL', function() {
 
@@ -111,8 +133,10 @@ describe('PostgreSQL', function() {
     it('insert', forInsert(context, TestModel));
     it('update', forUpdate(context, TestModel));
     it('find', forFind(context, TestModel));
+    it('count', forCount(context, TestModel));
     it('remove', forRemove(context, TestModel));
     it('find empty', forFindEmpty(context, TestModel));
+    it('count empty', forCountEmpty(context, TestModel));
 
 });
 
@@ -135,7 +159,9 @@ describe('MySQL', function() {
     it('insert', forInsert(context, TestModel));
     it('update', forUpdate(context, TestModel));
     it('find', forFind(context, TestModel));
+    it('count', forCount(context, TestModel));
     it('remove', forRemove(context, TestModel));
     it('find empty', forFindEmpty(context, TestModel));
+    it('count empty', forCountEmpty(context, TestModel));
 
 });
