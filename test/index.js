@@ -6,9 +6,9 @@ var bignosql = require('../index');
 
 function getTestModel(client) {
     return client.model("test", {
-        id: bignosql.NUMBER,
-        key: bignosql.STRING,
-        value: bignosql.NUMBER
+        id: bignosql.Number,
+        key: bignosql.String,
+        value: bignosql.Number
     });
 }
 
