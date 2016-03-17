@@ -1,7 +1,7 @@
 {
     "name": "bignosql",
     "description": "Smart NoSQL wapper for SQL",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "keywords": [
         "nosql",
         "mysql",
