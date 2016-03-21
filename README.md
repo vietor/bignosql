@@ -61,7 +61,8 @@ model.remove({id: 1}, function(err, count) {
 
 ##### type & parameters
 > type: pgsql
->> use **pg.pools**, [parameters details](https://github.com/brianc/node-postgres/wiki/Client#parameters)  
+>> use **pg.pools**, [parameters details](https://github.com/brianc/node-postgres/wiki/Client#parameters)
+
 > type: mysql
 >> use **mysql.createPool** [parameters details](https://github.com/felixge/node-mysql#pool-options)
 
