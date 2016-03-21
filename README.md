@@ -48,6 +48,25 @@ model.remove({id: 1}, function(err, count) {
 });
 ```
 
+## API
+
+### bignosql
+
+#### connect()
+
+|*Name*|*Type*|*Description*|*Requirement*|
+|---|---|---|---|
+|type|string|target sql type|Y|
+|parameters|Object|the sql connect params|Y|
+|options|Object|the options for bignosql|N|
+
+> type: pgsql
+>> use **pg.pools**, [parameters details](https://github.com/brianc/node-postgres/wiki/Client#parameters)
+
+> type: mysql
+>> use **mysql.createPool** [parameters details](https://github.com/felixge/node-mysql#pool-options)
+
+
 ## License
 
 [MIT](LICENSE)
