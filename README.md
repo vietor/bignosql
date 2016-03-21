@@ -7,7 +7,7 @@ Smart NoSQL wrapper for SQL.
 ===
 
 This **isn't** a ORM, This a lightweight wrapper for **SQL**.  
-This project **dong't** change the world, It just simplify the SQL usage.
+This project **don't** change the world, It just simplify the **SQL usage**.
 
 ## Installation
 
