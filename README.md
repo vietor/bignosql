@@ -52,16 +52,16 @@ model.remove({id: 1}, function(err, count) {
 
 ### bignosql
 
-#### connect()
-|*Name*|*Type*|*Description*|*Requirement*|
+#### connect(type, parameters, [options])
+|*Name*|*Type*|*Description*|
 |---|---|---|---|
-|type|string|target sql type|Y|
-|parameters|Object|the sql connect params|Y|
-|options|Object|the options for bignosql|N|
+|type|string|target sql type|
+|parameters|Object|the sql connect params|
+|options|Object|the options for bignosql|
 
 ##### type & parameters
 > type: pgsql
->> use **pg.pools**, [parameters details](https://github.com/brianc/node-postgres/wiki/Client#parameters)
+>> use **pg.pools**, [parameters details](https://github.com/brianc/node-postgres/wiki/Client#parameters)  
 > type: mysql
 >> use **mysql.createPool** [parameters details](https://github.com/felixge/node-mysql#pool-options)
 
