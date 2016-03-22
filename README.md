@@ -6,8 +6,7 @@
 Smart NoSQL wrapper for SQL.
 ===
 
-This **isn't** a ORM, This a lightweight wrapper for **SQL**.  
-This project **don't** change the world, It just simplify the **SQL usage**.
+This **isn't** a ORM, it just simplify the **SQL usage**.
 
 ## Installation
 
@@ -15,8 +14,8 @@ This project **don't** change the world, It just simplify the **SQL usage**.
 $ npm install --save bignosql
 
 # And one of the following:
-$ npm install --save pg
-$ npm install --save mysql
+$ npm install --save pg # for postgresql
+$ npm install --save mysql # for mysql and like mysql
 ```
 
 ## Usage
@@ -62,14 +61,14 @@ model.remove({id: 1}, function(err, count) {
 ### bignosql
 
 #### Any
-The definiton for Schema **Undefined** type.  
+The **variables** definition for Schema **Undefined** type.  
 Don't direct usage the variable, it is **local usage**.
 
 #### Number
-The definiton for Schema **Number** type.
+The **variables** definiton for Schema **Number** type.
 
 #### String
-The definiton for Schema **String** type.
+The **variables** definiton for Schema **String** type.
 
 #### connect(type, parameters, [options])
 
@@ -107,21 +106,141 @@ Create a model for **SQL Table**, return **Model** object.
 ##### Object(Schema)
 
 The **Schema** is a simple object, **Key** is the column name, **Value** is a **type definition**.  
-The **type definition** may be a **virable** or Object(Shema Type).
+The **type definition** may be a **variable** or Object(ShemaType).
 
-###### Object(Schema Type)
+###### Object(SchemaType)
 |*Name*|*Type*|*Default*|*Description*|
 |---|---|---|---|
-|type|**virables**|Any|column data type|
+|type|**variables**|Any|column data type|
 |default|**object**|default value for column|
 
 ### Model
 
-#### insert(fields, [options], callback)
+#### insert(doc, [options], callback)
+
+Insert one record to table.
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|doc|Object|the columns and it values|
+|options|Object(InsertOptions)|the options for insert|
+|callback|function|the callback for result|
+
+##### Object(InsertOptions)
+
+|*Name*|*Type*|*Default*|*Description*|
+|---|---|---|---|
+|return|string|Undefined|for result the auto incriment name|
+
+##### callback(err, result)
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|err|object|**Error** object|
+|result|object|the result object|
+
 #### find(query, [fields], [callback])
+
+Finds some records from table.
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|query|Object|the columns and it conditions|
+|fields|Object|required column names|
+|callback|function|callback for result|
+
+> when callback was null, it return **Query** object
+
+##### Query
+
+###### select(fields)
+
+Set required column names. It's a K/V Object, key is column name, V 1 or true was required.
+
+###### sort(fields)
+
+Set column sort order. It's a K/V Object, key is column name, V 1 was ASC, -1 was DESC.
+
+###### skip(n)
+
+Set skip row count in table
+
+###### limit(n)
+
+Set limit row count in result
+
+###### exec(callback)
+
+callback for result
+
 #### count(query, callback)
+
+Get count from table.
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|query|Object|the columns and it conditions|
+|callback|function|callback for result|
+
+##### callback(err, count)
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|err|object|**Error**object|
+|count|number|row count|
+
 #### update(query, update, callback)
+
+Update records from table.
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|query|Object|the columns and it conditions|
+|update|Object(UpdateScript)|update script|
+|callback|function|callback for result|
+
+##### Object(UpdateScript)
+
+It was a simple record object like **doc** in **insert**, or a complex object.
+
+|*Key*|*Type*|*Description*|
+|---|---|---|
+|$set|**doc**|the record object|
+|$in|Object|the K/V for number addition|
+
+``` json
+{
+    $set: {
+        key: "demo"
+    },
+    $inc: {
+        value: -9
+    }
+}
+```
+
+##### callback(err, count)
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|err|object|**Error**object|
+|count|number|affect row count|
+
 #### remove(query, callback)
+
+Remove records from table.
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|query|Object|the columns and it conditions|
+|callback|function|callback for result|
+
+##### callback(err, count)
+
+|*Name*|*Type*|*Description*|
+|---|---|---|
+|err|object|**Error**object|
+|count|number|affect row count|
 
 ## License
 
