@@ -132,13 +132,6 @@ Insert one record to table.
 |---|---|---|---|
 |return|string|Undefined|for result the auto incriment name|
 
-##### callback(err, result)
-
-|*Name*|*Type*|*Description*|
-|---|---|---|
-|err|object|**Error** object|
-|result|object|the result object|
-
 #### find(query, [fields], [callback])
 
 Finds some records from table.
@@ -218,13 +211,6 @@ Get count from table.
 |query|Object|the columns and it conditions|
 |callback|function|callback for result|
 
-##### callback(err, count)
-
-|*Name*|*Type*|*Description*|
-|---|---|---|
-|err|object|**Error**object|
-|count|number|row count|
-
 #### update(query, update, callback)
 
 Update records from table.
@@ -255,13 +241,6 @@ It was a simple record object like **doc** in **insert**, or a complex object.
 }
 ```
 
-##### callback(err, count)
-
-|*Name*|*Type*|*Description*|
-|---|---|---|
-|err|object|**Error** object|
-|count|number|affect row count|
-
 #### remove(query, callback)
 
 Remove records from table.
@@ -271,12 +250,6 @@ Remove records from table.
 |query|Object|the columns and it conditions|
 |callback|function|callback for result|
 
-##### callback(err, count)
-
-|*Name*|*Type*|*Description*|
-|---|---|---|
-|err|object|**Error** object|
-|count|number|affect row count|
 
 ## License
 
