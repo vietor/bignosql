@@ -99,7 +99,7 @@ Connect the sql database, return the **Client** object
 Create a model for **SQL Table**, return **Model** object.
 
 |*Name*|*Type*|*Description*|
-|---|---|---|---|
+|---|---|---|
 |name|string|the table name for sql|
 |schema|Object(Schema)|the schema definition|
 
@@ -112,7 +112,7 @@ The **type definition** may be a **variable** or Object(ShemaType).
 |*Name*|*Type*|*Default*|*Description*|
 |---|---|---|---|
 |type|**variables**|Any|column data type|
-|default|**object**|default value for column|
+|default|**object**|Undefined|default value for column|
 
 ### Model
 
@@ -150,6 +150,42 @@ Finds some records from table.
 |callback|function|callback for result|
 
 > when callback was null, it return **Query** object
+
+##### Object(Condition)
+
+|*Key*|*Type*|*Description*|
+|---|---|---|
+|$or|Array|**OR** condition array|
+|$in|Array|vlaue in a array|
+|$nin|Array|value not in a array|
+|$eq|Object|value = a object|
+|$ne|Object|value != a object|
+|$lt|number|value &lt; a number|
+|$lte|number|value &lt;= a number|
+|$gt|number|value &gt; a number|
+|$gte|number|value &gt;= a number|
+|$regex|string|value match a regexp string|
+
+``` json
+{
+    "$or": [
+        {
+            "key": {
+                "$in": ["demo", "demo2"]
+            }
+        }, {
+            "value": {
+                "gte": 1,
+                "lt": 2
+            }
+        }, {
+            "key": {
+                "$regex": "^demo.*"
+            }
+        }
+    ]
+}
+```
 
 ##### Query
 
@@ -210,11 +246,11 @@ It was a simple record object like **doc** in **insert**, or a complex object.
 
 ``` json
 {
-    $set: {
-        key: "demo"
+    "$set": {
+        "key": "demo"
     },
-    $inc: {
-        value: -9
+    "$inc": {
+        "value": -9
     }
 }
 ```
@@ -223,7 +259,7 @@ It was a simple record object like **doc** in **insert**, or a complex object.
 
 |*Name*|*Type*|*Description*|
 |---|---|---|
-|err|object|**Error**object|
+|err|object|**Error** object|
 |count|number|affect row count|
 
 #### remove(query, callback)
@@ -239,7 +275,7 @@ Remove records from table.
 
 |*Name*|*Type*|*Description*|
 |---|---|---|
-|err|object|**Error**object|
+|err|object|**Error** object|
 |count|number|affect row count|
 
 ## License
