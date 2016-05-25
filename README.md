@@ -228,7 +228,7 @@ It was a simple record object like **doc** in **insert**, or a complex object.
 |*Key*|*Type*|*Description*|
 |---|---|---|
 |$set|**doc**|the record object|
-|$in|Object|the K/V for number addition|
+|$inc|Object|the K/V for number addition|
 
 ``` json
 {
