@@ -47,6 +47,28 @@ function forUpdate(context, TestModel) {
     };
 }
 
+function forUpdateAndReturn(context, TestModel) {
+    return function(done) {
+        TestModel.update({
+            id: context.id
+        }, {
+            $set: {
+                key: "demo2"
+            },
+            $inc: {
+                value: 2
+            },
+        }, {
+            return: "value"
+        }, function(err, rowCount, data) {
+            should(err).be.equal(null);
+            should(rowCount == 1).be.ok();
+            should(data.value > 1).be.ok();
+            done();
+        });
+    };
+}
+
 function forFind(context, TestModel) {
     return function(done) {
         TestModel.find({
