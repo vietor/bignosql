@@ -130,7 +130,7 @@ Insert one record to table.
 
 |*Name*|*Type*|*Default*|*Description*|
 |---|---|---|---|
-|return|string|Undefined|for result the auto incriment name|
+|id|string|Undefined|for result the auto incriment name|
 
 #### find(query, [fields], [callback])
 
@@ -211,7 +211,7 @@ Get count from table.
 |query|Object|the columns and it conditions|
 |callback|function|callback for result|
 
-#### update(query, update, callback)
+#### update(query, update, [options], callback)
 
 Update records from table.
 
@@ -240,6 +240,15 @@ It was a simple record object like **doc** in **insert**, or a complex object.
     }
 }
 ```
+
+##### Object(UpdateOptions)
+
+> only supoort for **pgsql**
+
+|*Name*|*Type*|*Default*|*Description*|
+|---|---|---|---|
+|return|string|Undefined|for result a column|
+
 
 #### remove(query, callback)
 
